@@ -1,0 +1,5 @@
+{
+    "rule": "[#7;a:3]:[c:4]:[n;H0;D3;+0:5](:[#7;a:6])-[CH2;D2;+0:1]-[C:2]>>O-[CH2;D2;+0:1]-[C:2].[#7;a:3]:[c:4]:[nH;D2;+0:5]:[#7;a:6]",
+    "combination_of_special_groups_to_avoid": ["[C](=O)O[C]", "[OH]"],
+    "conditions": ""
+  }

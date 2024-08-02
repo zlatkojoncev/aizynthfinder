@@ -7,3 +7,4 @@ from aizynthfinder.context.stock.queries import (
 )
 from aizynthfinder.context.stock.stock import Stock
 from aizynthfinder.utils.exceptions import StockException
+from aizynthfinder.context.custom_stock import CriteriaStock

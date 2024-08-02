@@ -1,0 +1,76 @@
+# 
+search:
+  algorithm: mcts
+  algorithm_config:
+    C: 1.4
+    default_prior: 0.5
+    use_prior: True
+    prune_cycles_in_search: True
+    search_rewards:
+      - state score
+  max_transforms: 10
+  iteration_limit: 1000
+  return_first: false
+  time_limit: 600
+  exclude_target_from_stock: True
+  # break_bonds: [[1, 2], [2, 3]]
+  # freeze_bonds: [[3, 4]]
+  break_bonds_operator: or
+
+expansion:
+  uspto:
+    - /home/joncev/git/aizynthfinder/my_folder/uspto_model.onnx
+    - /home/joncev/git/aizynthfinder/my_folder/uspto_templates.csv.gz
+  ringbreaker:
+    - /home/joncev/git/aizynthfinder/my_folder/uspto_ringbreaker_model.onnx
+    - /home/joncev/git/aizynthfinder/my_folder/uspto_ringbreaker_templates.csv.gz
+  multi_expansion_strategy:
+    type: aizynthfinder.context.policy.MultiExpansionStrategy
+    expansion_strategies: [uspto, ringbreaker]
+    additive_expansion: True
+
+filter:
+  uspto: /home/joncev/git/aizynthfinder/my_folder/uspto_filter_model.onnx
+stock:
+  # zinc: /home/joncev/git/aizynthfinder/my_folder/zinc_stock.hdf5
+  zinc: /home/joncev/git/aizynthfinder/my_folder/zinc22/combined_inchikeys.txt
+
+  # type: aizynthfinder.context.CustomStock
+
+  # stop_criteria:
+  #     # price: 10
+  #     counts:
+  #         C: 3
+
+post_processing:
+    min_routes: 5
+    max_routes: 100
+    all_routes: True
+
+
+# expansion:
+#   my_policy:
+#     type: template-based
+#     model: /path/to/keras/model/weights.hdf5
+#     template: /path/to/hdf5/templates.hdf5
+#     template_column: retro_template
+#     cutoff_cumulative: 0.995
+#     cutoff_number: 50
+#     use_rdchiral: True
+#     use_remote_models: False
+#   my_full_policy:
+#     - /path/to/keras/model/weights.hdf5
+#     - /path/to/hdf5/templates.hdf5
+# filter:
+#   uspto:
+#     type: quick-filter
+#     model: /path/to/keras/model/weights.hdf5
+#     exclude_from_policy: rc
+#     filter_cutoff: 0.05
+#     use_remote_models: False
+#   uspto_full: /path/to/keras/model/weights.hdf5
+# stock:
+#   buyables:
+#     type: inchiset
+#     path: /path/to/stock1.hdf5
+#   emolecules: /path/to/stock1.hdf5

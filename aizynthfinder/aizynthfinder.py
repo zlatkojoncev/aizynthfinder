@@ -39,6 +39,7 @@ if TYPE_CHECKING:
     )
 
 
+
 class AiZynthFinder:
     """
     Public API to the aizynthfinder tool
@@ -195,9 +196,13 @@ class AiZynthFinder:
             for leaf in tree.leafs():
                 if leaf.smiles not in _stock_info:
                     _stock_info[leaf.smiles] = self.stock.availability_list(leaf)
+                # #add a check to see if leaf has less than 4 heavy atoms
+                # if leaf.rd_mol.GetNumHeavyAtoms() <= 4:
+                #     _stock_info[leaf.smiles] = ["small_molecule"]
+            
         return _stock_info
 
-    def tree_search(self, show_progress: bool = False) -> float:
+    def tree_search(self, show_progress: bool = True) -> float:
         """
         Perform the actual tree search
 
@@ -252,7 +257,7 @@ class AiZynthFinder:
     def _setup_focussed_bonds(self, target_mol: Molecule) -> None:
         """
         Setup multi-objective scoring function with 'broken bonds'-scorer and
-        add 'frozen bonds'-filter to filter policy.
+        add 'frozen bonds' - filter to filter policy.
 
         :param target_mol: the target molecule.
         """

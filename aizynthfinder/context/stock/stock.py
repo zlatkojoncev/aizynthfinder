@@ -1,7 +1,7 @@
 """ Module containing classes that interfaces different stock classes
 """
 from __future__ import annotations
-
+from rdkit.Chem import Lipinski
 import copy
 from collections import defaultdict
 from typing import TYPE_CHECKING
@@ -28,8 +28,6 @@ if TYPE_CHECKING:
         StrDict,
         Union,
     )
-
-
 class Stock(ContextCollection):
     """
     A collection of molecules that are in stock
@@ -64,6 +62,13 @@ class Stock(ContextCollection):
         self._use_stop_criteria: bool = False
 
     def __contains__(self, mol: Molecule) -> bool:
+        
+        
+        # #add a check to see if leaf has less than 5 heavy atoms
+        if Lipinski.HeavyAtomCount(mol.rd_mol) < 5:
+            # print(f"less than 5 atoms {mol.smiles}")
+            return True
+
         if not self.selection or mol.inchi_key in self._exclude:
             return False
 
@@ -127,6 +132,9 @@ class Stock(ContextCollection):
         availability = self.availability_list(mol)
         if availability:
             return ",".join(availability)
+        # elif Lipinski.HeavyAtomCount(mol.rd_mol) < 5:
+        #     return "zinc_small_molecule"
+        
         return "Not in stock"
 
     def exclude(self, mol: Molecule) -> None:

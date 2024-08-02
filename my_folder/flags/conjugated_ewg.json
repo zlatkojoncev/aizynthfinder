@@ -1,0 +1,5 @@
+{
+    "rule": "[C:4]=[CH;D2;+0:5]-[c;H0;D3;+0:1](:[c:2]):[c:3]>>Br-[c;H0;D3;+0:1](:[c:2]):[c:3].[C:4]=[CH2;D1;+0:5]",
+    "special_groups_needed": ["[C]=[C]-[C](=O)-O", "[C]=[C]-[N+](=O)[O-]", "[C]=[C]-[C]#[N]"],
+    "conditions": "base"
+  }

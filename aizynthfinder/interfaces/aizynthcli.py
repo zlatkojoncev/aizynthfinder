@@ -13,6 +13,7 @@ import time
 from collections import defaultdict
 from typing import TYPE_CHECKING
 
+
 import pandas as pd
 
 from aizynthfinder.aizynthfinder import AiZynthFinder
@@ -24,6 +25,7 @@ from aizynthfinder.utils.files import (
     start_processes,
 )
 from aizynthfinder.utils.logging import logger, setup_logger
+
 
 if TYPE_CHECKING:
     from aizynthfinder.utils.type_utils import (
@@ -398,6 +400,7 @@ def main() -> None:
         params = params[:-1]
         _process_single_smiles(*params)
 
+    # with open('molecules_less_then5.txt', 'w') as f: f.write('\n'.join(map(str, lessthan5atoms)))
 
 if __name__ == "__main__":
     main()

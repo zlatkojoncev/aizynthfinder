@@ -1,0 +1,5 @@
+{
+    "rule": "[C:4]-[N;H0;D3;+0:5](-[C:6])-[C;H0;D3;+0:1](-[C:2])=[O;D1;H0:3]>>O-[C;H0;D3;+0:1](-[C:2])=[O;D1;H0:3].[C:4]-[NH;D2;+0:5]-[C:6]",
+    "special_groups_to_avoid": ["[NH2]"],
+    "conditions": "acid"
+  }
