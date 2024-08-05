@@ -11,7 +11,8 @@ search:
   max_transforms: 10
   iteration_limit: 1000
   return_first: false
-  time_limit: 600
+  time_limit: 
+  
   exclude_target_from_stock: True
   # break_bonds: [[1, 2], [2, 3]]
   # freeze_bonds: [[3, 4]]
@@ -21,19 +22,28 @@ expansion:
   uspto:
     - /home/joncev/git/aizynthfinder/my_folder/uspto_model.onnx
     - /home/joncev/git/aizynthfinder/my_folder/uspto_templates.csv.gz
+    # - /home/joncev/git/aizynthfinder/my_folder/standard_expansion_policy_thres4/uspto_expansion.onnx
+    # - /home/joncev/git/aizynthfinder/my_folder/standard_expansion_policy_thres4/uspto_templates.csv.gz
   ringbreaker:
     - /home/joncev/git/aizynthfinder/my_folder/uspto_ringbreaker_model.onnx
     - /home/joncev/git/aizynthfinder/my_folder/uspto_ringbreaker_templates.csv.gz
+    # - /home/joncev/git/aizynthfinder/my_folder/ringbreaker_expansion_policy_thres4/uspto_ringbreaker_expansion.onnx
+    # - /home/joncev/git/aizynthfinder/my_folder/ringbreaker_expansion_policy_thres4/uspto_ringbreaker_templates.csv.gz
+
+  stereo:
+    - /home/joncev/git/aizynthfinder/my_folder/stereo_expansion_policy_thres3/uspto_stereo_expansion.onnx
+    - /home/joncev/git/aizynthfinder/my_folder/stereo_expansion_policy_thres3/uspto_stereo_templates.csv.gz
+
   multi_expansion_strategy:
     type: aizynthfinder.context.policy.MultiExpansionStrategy
-    expansion_strategies: [uspto, ringbreaker]
+    expansion_strategies: [uspto, ringbreaker, stereo]
     additive_expansion: True
 
 filter:
   uspto: /home/joncev/git/aizynthfinder/my_folder/uspto_filter_model.onnx
 stock:
-  # zinc: /home/joncev/git/aizynthfinder/my_folder/zinc_stock.hdf5
-  zinc: /home/joncev/git/aizynthfinder/my_folder/zinc22/combined_inchikeys.txt
+  zinc: /home/joncev/git/aizynthfinder/my_folder/zinc_stock.hdf5
+  # zinc: /home/joncev/git/aizynthfinder/my_folder/zinc22/combined_inchikeys.txt
 
   # type: aizynthfinder.context.CustomStock
 
