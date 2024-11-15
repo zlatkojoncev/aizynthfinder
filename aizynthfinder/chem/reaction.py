@@ -446,7 +446,7 @@ class SmilesBasedRetroReaction(RetroReaction):
 
     def __str__(self) -> str:
         return (
-            f"retro reaction on molecule {self.mol.smiles} giving {self.reactants_str}"
+            f"{self.mol.smiles}>>{self.reactants_str}"
         )
 
     def to_dict(self) -> StrDict:
