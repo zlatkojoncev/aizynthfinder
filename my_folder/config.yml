@@ -45,6 +45,7 @@ expansion:
   multi_expansion_strategy:
     type: aizynthfinder.context.policy.MultiExpansionStrategy
     expansion_strategies: [uspto, ringbreaker, stereo]
+    expansion_strategy_weights: [0.8, 0.1, 0.1]
     additive_expansion: True
 
 filter:
